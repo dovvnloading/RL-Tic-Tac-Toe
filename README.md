@@ -27,6 +27,8 @@ Shaped rewards
 
 It also showcases software engineering practices like modular design, multithreading for UI responsiveness, and the use of Python's queue system for thread communication.
 
+
+*** I've included two versions of the code. The most recent is much slower and slightly better while the outdated version is incredibly fast with simulating the training games. If you do not have that great of a PC try using the 'outdated' version, its still worth using. I've also included a few saves from training runs I've done while trying various hyper-parameter settings. I believe its save 3 that is well into the 1mil+ games trained which took all night to train on a relatively nice computer. 
 _______________________________________________________________________
 _______________________________________________________________________
 _______________________________________________________________________
