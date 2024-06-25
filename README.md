@@ -26,3 +26,80 @@ UCB1 exploration
 Shaped rewards
 
 It also showcases software engineering practices like modular design, multithreading for UI responsiveness, and the use of Python's queue system for thread communication.
+
+
+
+
+Step-by-Step Guide: Using the Tic Tac Toe AI Project
+Prerequisites
+
+Python installed on your system
+Pygame library installed (pip install pygame)
+The project code loaded into your Python IDE
+
+Steps to Run and Use the Program
+
+Run the Script
+
+Execute the main script in your IDE.
+The program will start and display a menu in the console.
+
+
+Choose a Game Mode
+When prompted, enter a number (1-6) to select a game mode:
+
+AI vs AI (Training)
+Human vs Untrained AI
+Load agents and continue training
+Human vs Trained AI
+Evaluation Mode
+Exit
+
+
+For AI vs AI Training (Option 1)
+
+The training will start automatically.
+You'll see the game board updating in a Pygame window.
+Training statistics will be printed in the console.
+Close the Pygame window to stop training and save the agents.
+
+
+For Human vs Untrained AI (Option 2)
+
+Choose to play as X or O when prompted.
+The game board will appear in a Pygame window.
+Click on the board to make your move when it's your turn.
+The AI will automatically make its move.
+After the game ends, choose to play again or exit.
+
+
+For Loading Agents and Continuing Training (Option 3)
+
+The program will load previously saved agents.
+Training will continue as in Option 1.
+
+
+For Human vs Trained AI (Option 4)
+
+The program will load previously trained agents.
+Follow the same steps as in Option 2 to play against the trained AI.
+
+
+For Evaluation Mode (Option 5)
+
+Enter the number of games you want the AI to play for evaluation.
+The program will run these games and display detailed statistics.
+
+
+Exiting the Program (Option 6)
+
+Choose this option to exit the program.
+The AI agents will be automatically saved before exiting.
+
+
+
+Additional Notes
+
+During AI training or evaluation, you can close the Pygame window at any time to stop the process and save the agents.
+After playing games or training, the AI agents are automatically saved for future use.
+You can always load previously trained agents using Option 3 or 4.
