@@ -27,8 +27,9 @@ Shaped rewards
 
 It also showcases software engineering practices like modular design, multithreading for UI responsiveness, and the use of Python's queue system for thread communication.
 
-
-
+_______________________________________________________________________
+_______________________________________________________________________
+_______________________________________________________________________
 
 Step-by-Step Guide: Using the Tic Tac Toe AI Project
 Prerequisites
