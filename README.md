@@ -51,12 +51,12 @@ The program will start and display a menu in the console.
 Choose a Game Mode
 When prompted, enter a number (1-6) to select a game mode:
 
-AI vs AI (Training)
-Human vs Untrained AI
-Load agents and continue training
-Human vs Trained AI
-Evaluation Mode
-Exit
+1 - AI vs AI (Training) 
+2 - Human vs Untrained AI 
+3 - Load agents and continue training 
+4 - Human vs Trained AI 
+5 - Evaluation Mode 
+6 - Exit 
 
 
 For AI vs AI Training (Option 1)
