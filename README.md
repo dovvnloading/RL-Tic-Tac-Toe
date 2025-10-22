@@ -1,108 +1,81 @@
-This project implements an advanced Tic Tac Toe game using Pygame, featuring multiple AI agents powered by a sophisticated reinforcement learning algorithm. The core of the AI is based on a Dueling Double Q-learning approach, which is an enhancement over traditional Q-learning.
-The game includes several key components:
+# Reinforcement Learning Tic-Tac-Toe
 
-TicTacToe class: Represents the game board and logic, including move validation, win checking, and state evaluation.
-DuelingDoubleQLearningAgent class: Implements the AI player using Dueling Double Q-learning. This advanced algorithm separates state value and action advantage, potentially leading to better performance in certain scenarios. The agent uses two sets of Q-tables (value and advantage) to reduce overestimation bias.
-PrioritizedExperienceReplay class: Implements experience replay with prioritized sampling, which helps the agent learn more efficiently from important experiences.
-Game visualization: Utilizes Pygame to render the game board and moves, providing a graphical interface for human players.
-Multiple game modes:
+This project implements a Tic-Tac-Toe game where AI agents learn to play using advanced Reinforcement Learning techniques. The application features a graphical user interface built with Pygame and allows for agent training, evaluation, and gameplay against a human opponent. The agents are trained using a Dueling Double Q-Learning algorithm combined with Prioritized Experience Replay for efficient learning.
 
-AI vs AI training: Allows two AI agents to play against each other to improve their strategies.
-Human vs Untrained AI: Lets a human player compete against an untrained AI.
-Human vs Trained AI: Enables play against a pre-trained AI agent.
-Evaluation mode: Runs multiple games between AI agents to assess their performance.
+## Features
 
+-   **AI vs. AI Training Mode**: Run simulations of two AI agents playing against each other for thousands of episodes to train them from scratch.
+-   **Human vs. AI Gameplay**: Play against a pre-trained or an untrained AI agent.
+-   **Agent Persistence**: The trained state of the agents (their learned Q-tables) can be saved to and loaded from `.pkl` files, allowing for training to be paused and resumed.
+-   **Evaluation Mode**: Observe trained agents play against each other with detailed console output for each move, providing insight into their decision-making process.
+-   **Graphical User Interface**: A clean and responsive GUI built with Pygame to visualize the game in real-time.
+-   **Multi-threaded Training**: The AI training process runs on a separate thread, keeping the GUI responsive.
 
-Save/Load functionality: Allows saving and loading of trained agents, preserving their learned strategies.
-Shaped reward system: Implements a nuanced reward structure that considers factors like board control and potential winning moves, not just game outcomes.
-UCB1 exploration: Uses Upper Confidence Bound algorithm for balancing exploration and exploitation in action selection.
+## Core Reinforcement Learning Concepts
 
-The project demonstrates advanced concepts in reinforcement learning, including:
+This project utilizes several advanced reinforcement learning concepts to train the agents effectively:
 
-Dueling network architecture
-Double Q-learning
-Prioritized experience replay
-UCB1 exploration
-Shaped rewards
+-   **Dueling Double Q-Learning (DDQN)**: The core learning algorithm.
+    -   **Double Q-Learning**: It uses two separate Q-networks (in this case, Q-tables) to decouple action selection from target Q-value generation. This helps to reduce the overestimation bias common in standard Q-learning.
+    -   **Dueling Network Architecture**: The Q-value for a state-action pair is decomposed into two parts: the state-value function `V(s)` and the action-advantage function `A(s, a)`. This allows the agent to learn which states are valuable without having to learn the effect of each action at each state.
 
-It also showcases software engineering practices like modular design, multithreading for UI responsiveness, and the use of Python's queue system for thread communication.
+-   **Prioritized Experience Replay (PER)**: Instead of sampling experiences uniformly from a replay buffer, PER samples experiences based on their TD-error. Experiences that are more "surprising" (i.e., have a higher TD-error) are replayed more frequently, leading to more efficient learning.
 
+-   **Reward Shaping**: The agents receive more nuanced rewards than just win/loss/draw. Intermediate rewards are given for strategically valuable moves, such as taking the center square, creating a two-in-a-row threat, or blocking an opponent's threat. This guides the agents toward learning effective strategies more quickly.
 
-*** I've included two versions of the code. The most recent is much slower and slightly better while the outdated version is incredibly fast with simulating the training games. If you do not have that great of a PC try using the 'outdated' version, its still worth using. I've also included a few saves from training runs I've done while trying various hyper-parameter settings. I believe its save 3 that is well into the 1mil+ games trained which took all night to train on a relatively nice computer. 
-_______________________________________________________________________
-_______________________________________________________________________
-_______________________________________________________________________
+-   **UCB1 Exploration**: For action selection during exploitation, the Upper Confidence Bound (UCB1) algorithm is used. This provides a sophisticated balance between exploring less-visited actions and exploiting actions that are known to be good.
 
-Step-by-Step Guide: Using the Tic Tac Toe AI Project
-Prerequisites
+## Requirements
 
-Python installed on your system
-Pygame library installed (pip install pygame)
-The project code loaded into your Python IDE
+-   Python 3.x
+-   Pygame
+-   NumPy
 
-Steps to Run and Use the Program
+## Installation
 
-Run the Script
+1.  Clone the repository to your local machine:
+    ```bash
+    git clone https://github.com/dovvnloading/RL-Tic-Tac-Toe.git
+    ```
 
-Execute the main script in your IDE.
-The program will start and display a menu in the console.
+2.  Navigate to the project directory:
+    ```bash
+    cd RL-Tic-Tac-Toe
+    ```
 
+3.  Install the required Python packages:
+    ```bash
+    pip install pygame numpy
+    ```
 
-Choose a Game Mode
-When prompted, enter a number (1-6) to select a game mode:
+## Usage
 
-1 - AI vs AI (Training) 
-2 - Human vs Untrained AI 
-3 - Load agents and continue training 
-4 - Human vs Trained AI 
-5 - Evaluation Mode 
-6 - Exit 
+Run the main script from your terminal:
 
+```bash
+python RL_TicTacToe.py
+```
 
-For AI vs AI Training (Option 1)
+You will be presented with a menu of options in the terminal:
 
-The training will start automatically.
-You'll see the game board updating in a Pygame window.
-Training statistics will be printed in the console.
-Close the Pygame window to stop training and save the agents.
+1.  **AI vs AI (Training)**: Starts a training session where two AI agents play against each other. The Pygame window will show the games being played at high speed. The console will print statistics after each game. Close the Pygame window to stop training. The agents' progress will be saved automatically to `agent_x.pkl` and `agent_o.pkl`.
 
+2.  **Human vs Untrained AI**: Play a game against an AI agent that has not undergone any training.
 
-For Human vs Untrained AI (Option 2)
+3.  **Load agents and continue training**: Loads the previously saved progress from `agent_x.pkl` and `agent_o.pkl` and continues the AI vs AI training session.
 
-Choose to play as X or O when prompted.
-The game board will appear in a Pygame window.
-Click on the board to make your move when it's your turn.
-The AI will automatically make its move.
-After the game ends, choose to play again or exit.
+4.  **Human vs Trained AI**: Loads trained agents from the `.pkl` files and allows you to play against one of them. For the best experience, run the training mode (Option 1 or 3) first.
 
+5.  **Evaluation Mode**: Loads trained agents and runs a specified number of games between them. This mode prints detailed information to the console about each agent's move, including the reason for the move (e.g., "Attempting to win", "Defending", "Attacking") and the board evaluation score. Games run at a slower pace to allow for observation.
 
-For Loading Agents and Continuing Training (Option 3)
+6.  **Exit**: Closes the application.
 
-The program will load previously saved agents.
-Training will continue as in Option 1.
+### Gameplay Controls
 
+When playing against the AI, click on any empty square on the board to make your move.
 
-For Human vs Trained AI (Option 4)
+## File Structure
 
-The program will load previously trained agents.
-Follow the same steps as in Option 2 to play against the trained AI.
-
-
-For Evaluation Mode (Option 5)
-
-Enter the number of games you want the AI to play for evaluation.
-The program will run these games and display detailed statistics.
-
-
-Exiting the Program (Option 6)
-
-Choose this option to exit the program.
-The AI agents will be automatically saved before exiting.
-
-
-
-Additional Notes
-
-During AI training or evaluation, you can close the Pygame window at any time to stop the process and save the agents.
-After playing games or training, the AI agents are automatically saved for future use.
-You can always load previously trained agents using Option 3 or 4.
+-   `RL_TicTacToe.py`: The single Python script containing all the game logic, agent implementation, and GUI code.
+-   `agent_x.pkl` (generated): The saved state and learned Q-tables for the agent playing as 'X'.
+-   `agent_o.pkl` (generated): The saved state and learned Q-tables for the agent playing as 'O'.
